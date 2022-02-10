@@ -23,7 +23,7 @@ public class Board {
         return columns;
     }
 
-//    Retorna uma peça dado os valores
+    //    Retorna uma peça dado os valores
     public Piece piece(int row, int column) {
         if (!positionExists(row, column)) {
             throw new BoardException("Position not on the board");
@@ -31,7 +31,7 @@ public class Board {
         return pieces[row][column];
     }
 
-//    Retorna uma peça dado uma posição
+    //    Retorna uma peça dado uma posição
     public Piece piece(Position position) {
         if (!positionExists(position)) {
             throw new BoardException("Position not on the board");
@@ -45,14 +45,14 @@ public class Board {
     }
 
     //    Método que verifica se tem uma peça na dada posição
-    public boolean thereIsAPiece(Position position){
+    public boolean thereIsAPiece(Position position) {
         if (!positionExists(position)) {
             throw new BoardException("Position not on the board");
         }
         return piece(position) != null;
     }
 
-//    Atribui na matriz de peças uma peça dado uma posição
+    //    Atribui na matriz de peças uma peça dado uma posição
     public void placePiece(Piece piece, Position position) {
         if (thereIsAPiece(position)) {
             throw new BoardException("There is already a piece on position " + position);
