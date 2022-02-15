@@ -44,10 +44,13 @@ public class ChessMatch {
         return capturedPiece;
     }
 
-//    Método q valida se existe alguma peça da posição informada
+//    Método que valida se existe alguma peça da posição informada
     private void validateSourcePosition(Position source) {
         if (!board.thereIsAPiece(source)) {
             throw new ChessException("There is no piece on source position");
+        }
+        if (!board.piece(source).isThereAnyPossibleMove()) {
+            throw new ChessException("There is not possible moves for the chosen piece");
         }
     }
 
