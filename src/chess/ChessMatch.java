@@ -32,18 +32,18 @@ public class ChessMatch {
         Position source = sourcePosition.toPosition();
         Position target = targetPosition.toPosition();
         validateSourcePosition(source);
+        validateTargetPosition(source, target);
         Piece capturedPiece = makeMove(source, target);
         return (ChessPiece) capturedPiece;
     }
 
-//    Método que auxilia o método de movimentação das peças de xadrez (performChessMove) fazendo a lógica de cada posição e retornando a peça capturada
+    //    Método que auxilia o método de movimentação das peças de xadrez (performChessMove) fazendo a lógica de cada posição e retornando a peça capturada
     private Piece makeMove(Position source, Position target) {
         Piece p = board.removePiece(source);
         Piece capturedPiece = board.removePiece(target);
         board.placePiece(p, target);
         return capturedPiece;
     }
-
 //    Método que valida se existe alguma peça da posição informada
     private void validateSourcePosition(Position source) {
         if (!board.thereIsAPiece(source)) {
@@ -51,6 +51,12 @@ public class ChessMatch {
         }
         if (!board.piece(source).isThereAnyPossibleMove()) {
             throw new ChessException("There is not possible moves for the chosen piece");
+        }
+    }
+//     Método que valida se é possível mover a peça para a posição desejada
+    private void validateTargetPosition(Position source, Position target) {
+        if (!board.piece(source).possibleMove(target)) {
+            throw new ChessException("The chosen piece can't move to target position");
         }
     }
 
