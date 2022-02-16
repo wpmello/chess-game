@@ -27,6 +27,14 @@ public class ChessMatch {
         return mat;
     }
 
+//    Método que verifica as possiveis posições de uma determinada peça
+//    Método criado para auxiliar na impressão das posições que uma peça na sua posição vai poder se movimentar
+    public boolean[][] possibleMoves(ChessPosition sourcePosition) {
+        Position position = sourcePosition.toPosition();
+        validateSourcePosition(position);
+        return board.piece(position).possibleMoves();
+    }
+
 //    Método que realiza a movimentação das peças de xadrez
     public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
         Position source = sourcePosition.toPosition();
